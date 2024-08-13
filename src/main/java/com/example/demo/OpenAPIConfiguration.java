@@ -19,7 +19,7 @@ public class OpenAPIConfiguration {
         server.setDescription("Development");
 
         Contact myContact = new Contact();
-        myContact.setName("Jane Doe");
+        myContact.setName("Ashwin");
         myContact.setEmail("your.email@gmail.com");
 
         Info information = new Info()
