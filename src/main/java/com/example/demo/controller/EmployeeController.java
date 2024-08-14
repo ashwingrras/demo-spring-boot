@@ -2,11 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Employee;
 import com.example.demo.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/employee")
 @Cacheable
+@Validated
 public class EmployeeController {
 
     @Autowired
@@ -24,11 +27,14 @@ public class EmployeeController {
     @Cacheable(value = "employees")
     public List<Employee> fetchEmployeeList()
     {
+        System.out.println(" at fetchEmployeeList controller");
         return employeeService.fetchEmployeeList();
     }
 
     @PostMapping("/create")
-    public Employee createEmployee( @RequestBody Employee employee) {
+    public Employee createEmployee(@Valid @RequestBody Employee employee)
+    {
+        System.out.println(" at createEmployee controller");
         return employeeService.createEmployee(employee);
 
     }
