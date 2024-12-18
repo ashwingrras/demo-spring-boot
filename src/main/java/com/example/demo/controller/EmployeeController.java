@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/employee")
-@Cacheable
+//@Cacheable
 @Validated
 public class EmployeeController {
 
@@ -24,7 +24,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/employees")
-    @Cacheable(value = "employees")
+    //@Cacheable(value = "employees")
     public List<Employee> fetchEmployeeList()
     {
         System.out.println(" at fetchEmployeeList controller");
@@ -32,6 +32,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/create")
+    //@Cacheable(value = "employees", key = "#employee.id")
+    //@Cacheable(value = "employees")
     public Employee createEmployee(@Valid @RequestBody Employee employee)
     {
         System.out.println(" at createEmployee controller");
@@ -40,7 +42,7 @@ public class EmployeeController {
     }
 
     @GetMapping("fetch/{id}")
-    @Cacheable(value = "employee", key = "#id")
+    //@Cacheable(value = "employees", key= "#id")
     //@Cacheable(value = "employee", key = "#id" , unless = "#employee.age > 30")
     public Employee getEmployeeById(@PathVariable("id") Long id) {
         return employeeService.getEmployeeById(id);
@@ -48,7 +50,8 @@ public class EmployeeController {
     }
 
     @PutMapping("update/{id}")
-    @CachePut(cacheNames = "employee", key = "#id")
+    //@CachePut(cacheNames = "employees", key = "#employee.id")
+    //@CachePut(cacheNames = "employees")
     /*
         @Caching(
              evict = {@CacheEvict(value = "employeeList", allEntries = true)},
@@ -62,7 +65,9 @@ public class EmployeeController {
     }
 
     @DeleteMapping("delete/{id}")
-    @CacheEvict(cacheNames = "employee", key = "#id", beforeInvocation = true)
+    //@CacheEvict(cacheNames = "employee", key = "#id", beforeInvocation = true)
+    //@CacheEvict(value = "employees", allEntries = true)
+    //@CacheEvict(value = "employees", key= "#id" )
     public String deleteEmployee(@PathVariable("id") Long id)
     {
         return employeeService.deleteEmpById(id);

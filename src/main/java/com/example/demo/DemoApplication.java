@@ -7,7 +7,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
 @EnableCaching
-@EnableAspectJAutoProxy(proxyTargetClass=true)
+//@EnableAspectJAutoProxy(proxyTargetClass=true)
 public class DemoApplication {
 
 	public static void main(String[] args) {

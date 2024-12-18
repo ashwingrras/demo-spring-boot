@@ -23,31 +23,33 @@ public class LoggingAspect {
     }
     */
     // Before Advice
-    @Before("execution(* com.example.demo.service.*.*(..))")
+    // TODO FOR ALL SERVICES
+    //@Before("execution(* com.example.demo.service*.*(..))")
+    @Before("execution(* com.example.demo.service.ProductService*.*(..))")
     public void beforeAdvice(JoinPoint joinPoint) {
         System.out.println("Before method: " + joinPoint.getSignature());
     }
 
     // After Advice
-    @After("execution(* com.example.demo.service.*.*(..))")
+    @After("execution(* com.example.demo.service.ProductService*.*(..))")
     public void afterAdvice(JoinPoint joinPoint) {
         System.out.println("After method: " + joinPoint.getSignature());
     }
 
     // After Returning Advice
-    @AfterReturning(pointcut = "execution(* com.example.demo.service.*.*(..))", returning = "result")
+    @AfterReturning(pointcut = "execution(* com.example.demo.service.ProductService*.*(..))", returning = "result")
     public void afterReturningAdvice(JoinPoint joinPoint, Object result) {
         System.out.println("After returning method: " + joinPoint.getSignature() + ", Result: " + result);
     }
 
     // After Throwing Advice
-    @AfterThrowing(pointcut = "execution(* com.example.demo.service.*.*(..))", throwing = "error")
+    @AfterThrowing(pointcut = "execution(* com.example.demo.service.ProductService*.*(..))", throwing = "error")
     public void afterThrowingAdvice(JoinPoint joinPoint, Throwable error) {
         System.out.println("After throwing method: " + joinPoint.getSignature() + ", Exception: " + error);
     }
 
     // Around Advice
-    @Around("execution(* com.example.demo.service.*.*(..))")
+    @Around("execution(* com.example.demo.service.ProductService*.*(..))")
     public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
         System.out.println("Around before method: " + joinPoint.getSignature());
         Object result = joinPoint.proceed(); // Proceed with the method invocation

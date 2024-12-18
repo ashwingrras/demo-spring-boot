@@ -10,7 +10,6 @@ import jakarta.validation.constraints.Size;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull(message = "Name cannot be null")
